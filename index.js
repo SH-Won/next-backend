@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5000
 // Connect to MongoDB
 const mongoURI = process.env.mongoURI || config.mongoURI
 const connect = mongoose.connect(mongoURI, {
-  // dbName:'main',
+  dbName: 'main',
   useUnifiedTopology: true,
   useNewUrlParser: true,
   // useCreateIndex: true,
@@ -46,6 +46,9 @@ app.use('/auth', require('./routes/auth'))
 app.use('/register', require('./routes/register'))
 app.use('/login', require('./routes/login'))
 app.use('/refresh', require('./routes/refresh'))
+app.use('/post', require('./routes/post'))
+app.use('/product', require('./routes/product'))
+
 // app.all('*', (req, res) => {
 //     res.status(404);
 //     if (req.accepts('html')) {
