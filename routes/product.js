@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { Product } = require('../model/Product')
+const { SubProduct } = require('../model/subProduct')
 
 router.get('/', (req, res) => {
   // const productId =  req.query.productId
@@ -17,6 +18,14 @@ router.get('/', (req, res) => {
       res.json({ success: true, products })
     })
   }
+})
+
+router.get('/sub', (req, res) => {
+  const productId = req.query.productId
+  SubProduct.find({ productId }).exec((err, products) => {
+    if (err) res.json({ success: false, err })
+    res.json({ success: true, subProducts: products })
+  })
 })
 
 module.exports = router
